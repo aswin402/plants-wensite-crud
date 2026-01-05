@@ -76,22 +76,18 @@ Navbar (Server Component)
 ```
 ---
 
-## 🔐 Stack Auth Integration
+## Hero Section
 
-Authentication is handled using **Stack Auth**, which provides:
+The Hero section serves as the first visual and informational entry point of the application. It introduces the product, communicates its value, and provides clear call-to-action buttons for users.
 
-- Server-first authentication
-- Secure session handling
-- Built-in sign-in / sign-out URLs
-- Easy integration with Next.js App Router
+### ✨ Purpose
 
-### Why Stack Auth?
+* Present the main value proposition of the app
+* Encourage users to get started or view a demo
+* Maintain a clean, modern UI using Shadcn UI + Tailwind CSS
+* Ensure responsiveness across devices
 
-- Works perfectly with **Server Components**
-- No manual JWT/session handling
-- Clean separation of server & client logic
 
----
 
 
 
