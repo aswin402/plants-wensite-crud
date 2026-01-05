@@ -1,10 +1,15 @@
 import Link from "next/link";
-import { HomeIcon, Sprout } from "lucide-react";
+import { HomeIcon, LogIn, LogOut, Sprout } from "lucide-react";
 import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
 import  ModeToggle from './ModeToggle';
+import { stackServerApp } from "@/stack/server";
+import { UserButton } from "@stackframe/stack";
+import { NavLink } from "./NavLink";
 
-function Navbar() {
+async function Navbar() {
+  const user= await stackServerApp.getUser();
+  const app=stackServerApp.urls;
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="mx-auto max-w-7xl px-4">
@@ -20,30 +25,53 @@ function Navbar() {
 
           {/* Nav items */}
           <div className="hidden md:flex items-center space-x-4">
-            
-            <Link
-              href="/plants"
-              className={cn(
-                buttonVariants({ variant: "ghost" }),
-                "flex items-center gap-2"
-              )}
-            >
-              <Sprout className="h-4 w-4" />
-              <span className="hidden lg:inline">Plants</span>
-            </Link>
-
-            <Link
-              href="/"
-              className={cn(
-                buttonVariants({ variant: "ghost" }),
-                "flex items-center gap-2"
-              )}
-            >
-              <HomeIcon className="h-4 w-4" />
-              <span className="hidden lg:inline">Home</span>
-            </Link>
+                
+           <NavLink href="/plants" exact={false}>
+             <Sprout className="h-4 w-4" />
+             <span className="hidden lg:inline">Plants</span>
+           </NavLink>
            
+           <NavLink href="/">
+             <HomeIcon className="h-4 w-4" />
+             <span className="hidden lg:inline">Home</span>
+           </NavLink>
+               
            <ModeToggle />
+           {user ?(
+            <>
+
+             {/* sign out */}
+            <Link
+              href={app.signOut}
+              className={cn(
+                buttonVariants({ variant: "gradient" }),
+                "flex items-center gap-2"
+              )}
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="hidden lg:inline">Sign out</span>
+             </Link>
+             <UserButton />
+            </>
+
+           ):(
+
+            <>
+            {/* Sign in */}
+            <Link
+              href={app.signIn}
+              className={cn(
+                buttonVariants({ variant: "gradient" }),
+                "flex items-center gap-2"
+              )}
+            >
+              <LogIn className="h-4 w-4" />
+              <span className="hidden lg:inline">Sign in</span>
+            </Link>
+            </>
+           )}
+            
+
           </div>
         </div>
       </div>
