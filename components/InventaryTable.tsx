@@ -1,4 +1,4 @@
-import Plants from '@/app/plants/page'
+"use client";
 import {
   Table,
   TableBody,
@@ -9,6 +9,10 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
+import { Input } from './ui/input';
+import { Search } from 'lucide-react';
+import { use, useState } from 'react';
+import { Combobox } from './ui/combo-box';
 const plants = [
   {
     id: 1,
@@ -29,9 +33,31 @@ const plants = [
 
 
 export default function InventaryTable(){
+  const [selectedCategory,setSelectedCategory]=useState("");
   return (
-    <Table>
-      <TableCaption>Table with vertical lines.</TableCaption>
+    <div className="w-full">
+      <div className="flex items-center gap-2 py-4">
+         <div className="relative max-w-sm w-full">
+          <Input
+            placeholder="Filter plants..."
+            className="pl-10"
+          />
+          <Search className="absolute h-4 w-4 left-3 top-1/2 transform -translate-y-1/2" />
+        </div>
+
+        <Combobox
+          value={selectedCategory}
+          onChange={(val) => setSelectedCategory(val)}
+        />
+      </div>
+
+
+
+
+
+
+      <Table>
+      <TableCaption>end of lines.</TableCaption>
       <TableHeader>
         <TableRow className='*:border-border [&>:not(:last-child)]:border-r bg-zinc-900'>
           <TableHead className='w-25'>Plant id</TableHead>
@@ -60,6 +86,7 @@ export default function InventaryTable(){
         </TableRow>
       </TableFooter>
     </Table>
+    </div>
   )
 }
 

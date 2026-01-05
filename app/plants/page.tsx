@@ -8,9 +8,11 @@ async function Plants() {
     return (  
       <>
       {user ? (
-        <>
-        <InventaryTable />
-        </>
+          <div className="mt-7 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-10 gap-6">
+          <div className="lg:col-span-full">
+            <InventaryTable />
+          </div>
+        </div>
       ):(
         <div className="flex justify-center items-center mt-20">
             <SignUp />
