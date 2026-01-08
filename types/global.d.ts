@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import type { CurrentServerUser } from "@stackframe/stack";
 
-declare global {
-  let prisma: PrismaClient | undefined;
+declare module "hono" {
+  interface ContextVariableMap {
+    user: CurrentServerUser;
+  }
 }
-
-export {};

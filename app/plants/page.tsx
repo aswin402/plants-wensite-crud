@@ -1,4 +1,4 @@
-import InventaryTable from "@/components/InventaryTable";
+import InventoryTable from "@/components/InventaryTable";
 import { stackServerApp } from "@/stack/server";
 import { SignUp } from "@stackframe/stack";
 
@@ -10,7 +10,7 @@ async function Plants() {
       {user ? (
           <div className="mt-7 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-10 gap-6">
           <div className="lg:col-span-full">
-            <InventaryTable />
+            <InventoryTable />
           </div>
         </div>
       ):(
